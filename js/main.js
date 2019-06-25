@@ -1,32 +1,33 @@
-var botScore=0,
-	playerScore=0;
-
+let botScore=0,
+    playerScore=0;
+    
 document.getElementById("rock").onclick=playerChoseRock;
 document.getElementById("scissors").onclick=playerChoseScissors;
 document.getElementById("paper").onclick=playerChosePaper;
+
 function playerChoseRock(){
-	var cpuChose=getRandomResult();
-	checkWhoWon(cpuChose,"rock");
+	let cpuChose=getRandomResult();
+	checkWhoWon(cpuChose,"Kamień");
 }
 
 function playerChoseScissors(){
 	var cpuChose=getRandomResult();
-	checkWhoWon(cpuChose,"scissors");
+	checkWhoWon(cpuChose,"Nożyce");
 }
 
 function playerChosePaper(){
-	var cpuChose=getRandomResult();
-	checkWhoWon(cpuChose,"paper");
+	let cpuChose=getRandomResult();
+	checkWhoWon(cpuChose,"Papier");
 }
 
 function getRandomResult(){
-	var randomNumber=Math.random();
-	var cpuChose="rock";
+	let randomNumber=Math.random();
+	let cpuChose="Kamień";
 	if(randomNumber<.3){
-		cpuChose="scissors";
+		cpuChose="Nożyce";
 	}
 	else if(randomNumber<.6){
-		cpuChose="paper";
+		cpuChose="Papier";
 	}
 	
 	return cpuChose;
@@ -34,28 +35,22 @@ function getRandomResult(){
 
 function checkWhoWon(cpuChose,playerChose){
 	if(cpuChose==playerChose){
-		displayPlayersChoice("Wybrałeś " + playerChose);
-		displayBotsChoice("Komputer wybrał " + cpuChose);
-		displayCompleteMessage("No i macie remis. Jeszcze raz!");
+		displayPlayersChoice("Wybrałeś: " + playerChose);
+		displayBotsChoice("Komputer wybrał: " + cpuChose);
+		displayCompleteMessage("Remis. Jeszcze raz!");
 	}
 	else if(
-		(cpuChose=="scissors" && playerChose=="paper") ||
-		(cpuChose=="scissors" && playerChose=="l") ||
-		(cpuChose=="paper" && playerChose=="rock") ||
-		(cpuChose=="paper" && playerChose=="s") ||
-		(cpuChose=="rock" && playerChose=="scissors") ||
-		(cpuChose=="s" && playerChose=="rock") ||
-		(cpuChose=="s" && playerChose=="rock") ||
-		(cpuChose=="l" && playerChose=="s") ||
-		(cpuChose=="l" && playerChose=="paper")
+		(cpuChose=="Nożyce" && playerChose=="Papier") ||
+		(cpuChose=="Papier" && playerChose=="Kamień") ||
+        (cpuChose=="Kamień" && playerChose=="Nożyce")
 		){
-		displayPlayersChoice("Wybrałeś " + playerChose);
-		displayBotsChoice("Komputer wybrał " + cpuChose);
+		displayPlayersChoice("Wybrałeś: " + playerChose);
+		displayBotsChoice("Komputer wybrał: " + cpuChose);
 		increaseBotScore();
 	}
 	else{
-		displayPlayersChoice("Wybrałeś " + playerChose);
-		displayBotsChoice("Komputer wybrał " + cpuChose);
+		displayPlayersChoice("Wybrałeś: " + playerChose);
+		displayBotsChoice("Komputer wybrał: " + cpuChose);
 		increasePlayerScore();
 	}
 }
